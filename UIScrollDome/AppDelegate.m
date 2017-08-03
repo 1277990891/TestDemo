@@ -17,30 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    // Override point for customization after application launch.
-//    self.window.backgroundColor = [UIColor whiteColor];
-// 
-//    
-//    //初始化方法:
-//    LeftViewController * left = [[LeftViewController alloc]init];
-//    MainViewController * main = [[MainViewController alloc]init];
-//    HMRightMenuController * right = [[HMRightMenuController alloc]init];
-//    
-//    WWSideslipViewController * slide = [[WWSideslipViewController alloc]initWithLeftView:left andMainView:main andRightView:right andBackgroundImage:[UIImage imageNamed:@"bg.png"]];
-//    
-//    //滑动速度系数
-//    [slide setSpeedf:0.5];
-//    
-//    //点击视图是是否恢复位置
-//    slide.sideslipTapGes.enabled = YES;
-//    [self.window setRootViewController:slide];
-//    
-//    [self.window makeKeyAndVisible];
-    
-//    [MagicalRecord setupCoreDataStackWithStoreNamed:@"TKDatabase.sqlite"];
-    
+
     return YES;
 }
 
