@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="tDg-as-phF" customClass="PlayMusicView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="man" translatesAutoresizingMaskIntoConstraints="NO" id="AFm-GX-Ovl">
+                    <rect key="frame" x="14" y="6" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="40W-SP-TGn"/>
+                        <constraint firstAttribute="width" constant="60" id="8DE-LC-D7j"/>
+                    </constraints>
+                </imageView>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="rBG-J3-pSK">
+                    <rect key="frame" x="143" y="33" width="178" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="EJf-1U-xNz"/>
+                    </constraints>
+                    <color key="minimumTrackTintColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="maximumTrackTintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="sliderDragAction:" destination="tDg-as-phF" eventType="valueChanged" id="Y1q-SZ-tFL"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5t-1v-xOO">
+                    <rect key="frame" x="327" y="41" width="45" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="45" id="3fk-I0-KOJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUA-Y3-XLh">
+                    <rect key="frame" x="87" y="33" width="30" height="30"/>
+                    <state key="normal" title="Button" image="bf.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="playBtnAction:" destination="tDg-as-phF" eventType="touchUpInside" id="gDl-fC-IEv"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="rBG-J3-pSK" firstAttribute="leading" secondItem="oUA-Y3-XLh" secondAttribute="trailing" constant="28" id="8Sk-zJ-0Ki"/>
+                <constraint firstItem="o5t-1v-xOO" firstAttribute="centerY" secondItem="rBG-J3-pSK" secondAttribute="centerY" constant="-1" id="BlI-Jy-0Vs"/>
+                <constraint firstItem="AFm-GX-Ovl" firstAttribute="top" secondItem="tDg-as-phF" secondAttribute="top" constant="6" id="Xlc-rV-Mxz"/>
+                <constraint firstItem="o5t-1v-xOO" firstAttribute="leading" secondItem="rBG-J3-pSK" secondAttribute="trailing" constant="8" id="ZJK-gd-Aqq"/>
+                <constraint firstAttribute="trailing" secondItem="o5t-1v-xOO" secondAttribute="trailing" constant="3" id="bZf-7j-cXq"/>
+                <constraint firstItem="rBG-J3-pSK" firstAttribute="bottom" secondItem="tDg-as-phF" secondAttribute="bottomMargin" id="nRZ-NN-Ouh"/>
+                <constraint firstItem="rBG-J3-pSK" firstAttribute="leading" secondItem="AFm-GX-Ovl" secondAttribute="trailing" constant="71" id="owr-H3-Y22"/>
+                <constraint firstItem="oUA-Y3-XLh" firstAttribute="bottom" secondItem="rBG-J3-pSK" secondAttribute="bottom" id="t9Y-TW-f1I"/>
+                <constraint firstItem="oUA-Y3-XLh" firstAttribute="top" secondItem="rBG-J3-pSK" secondAttribute="top" id="wq1-VQ-0Vd"/>
+                <constraint firstItem="AFm-GX-Ovl" firstAttribute="leading" secondItem="tDg-as-phF" secondAttribute="leading" constant="14" id="z4W-Xn-xfq"/>
+                <constraint firstItem="oUA-Y3-XLh" firstAttribute="leading" secondItem="AFm-GX-Ovl" secondAttribute="trailing" constant="13" id="zRI-fH-lRW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="AFm-GX-Ovl" id="P24-bk-l4x"/>
+                <outlet property="playBtn" destination="oUA-Y3-XLh" id="dAi-u5-j5R"/>
+                <outlet property="slider" destination="rBG-J3-pSK" id="JG5-WU-eDF"/>
+                <outlet property="timeLbl" destination="o5t-1v-xOO" id="ptd-tD-khM"/>
+            </connections>
+            <point key="canvasLocation" x="-734.5" y="209.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bf.png" width="64" height="64"/>
+        <image name="man" width="200" height="200"/>
+    </resources>
+</document>
