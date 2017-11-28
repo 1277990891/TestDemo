@@ -1,0 +1,10 @@
+/* 
+  Localize.strings
+  ConfigTest
+
+  Created by li bo on 24/11/2017.
+  Copyright © 2017 li bo. All rights reserved.
+*/
+"Login" = "Login！";
+"download" = "download！";
+"pause" = "pause！";

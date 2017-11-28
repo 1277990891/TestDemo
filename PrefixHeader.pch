@@ -1,0 +1,36 @@
+//
+//  PrefixHeader.pch
+//  ConfigTest
+//
+//  Created by li bo on 11/7/17.
+//  Copyright © 2017 li bo. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+
+#import "DebugDefined.h"
+#import "CustomDefines.h"
+
+#import "AFNetworking.h"
+#import "AFHTTPClient.h"
+#import "NGHTTPClient.h"
+
+#import "NGRequestEndpoints.h"
+#import "UIView+Frame.h"
+#import "UIImage+NGMethods.h"
+
+
+// jjkk item
+#import "RequestTagList.h"
+#import "RequestUrls.h"
+
+#import "KeychainItemWrapper.h"
+
+#endif 

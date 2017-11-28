@@ -1,0 +1,21 @@
+
+/* Class = "UIButton"; normalTitle = "下载进度。。。"; ObjectID = "3Ww-ia-Uwr"; */
+"3Ww-ia-Uwr.normalTitle" = "progress...";
+
+/* Class = "UIButton"; normalTitle = "网络？"; ObjectID = "8na-DW-c0v"; */
+"8na-DW-c0v.normalTitle" = "network";
+
+/* Class = "UIButton"; normalTitle = "暂停"; ObjectID = "Gqt-Xm-2Lt"; */
+"Gqt-Xm-2Lt.normalTitle" = "pause";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "Vr3-wD-4On"; */
+"Vr3-wD-4On.normalTitle" = "Login";
+
+/* Class = "UITextField"; placeholder = "username"; ObjectID = "YIS-3e-bih"; */
+"YIS-3e-bih.placeholder" = "username";
+
+/* Class = "UIButton"; normalTitle = "下载"; ObjectID = "dwR-sp-8Jt"; */
+"dwR-sp-8Jt.normalTitle" = "download";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "oGY-BQ-utE"; */
+"oGY-BQ-utE.placeholder" = "password";

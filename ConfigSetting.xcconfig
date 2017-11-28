@@ -1,0 +1,22 @@
+//
+//  ConfigSetting.xcconfig
+//  ConfigTest
+//
+//  Created by li bo on 11/7/17.
+//  Copyright © 2017 li bo. All rights reserved.
+//
+
+
+APP_NAME=ConfigTestDemo
+
+BUNDLE_IDENTIFIER=li.ConfigTest
+
+BUNDLE_VERSION=1.0
+BUILD_VERSION=12
+
+
+
+GCC_PREPROCESSOR_DEFINITIONS = $(value) AUTO_BRANDING CONFIGTESTDEMO_BRANDING STATUS_BAR_BLACK_COLOR
+
+//OTHER_SWIFT_FLAGS = $(inherited) "-DAUTO_BRANDING" "-CONFIGTESTDEMO_BRANDING" "-DSTATUS_BAR_BLACK_COLOR"
+
