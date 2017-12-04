@@ -13,7 +13,7 @@
 		091FC4251FD0FBA2009E534B /* NSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FC41E1FD0FBA2009E534B /* NSModel.m */; };
 		091FC42E1FD0FBD1009E534B /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091FC4271FD0FBD1009E534B /* AppViewController.swift */; };
 		091FC42F1FD0FBD1009E534B /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FC4291FD0FBD1009E534B /* SubViewController.m */; };
-		091FC4301FD0FBD1009E534B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FC42A1FD0FBD1009E534B /* ViewController.m */; };
+		091FC4301FD0FBD1009E534B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FC42A1FD0FBD1009E534B /* MainViewController.m */; };
 		091FC4311FD0FBD1009E534B /* QRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FC42B1FD0FBD1009E534B /* QRViewController.m */; };
 		091FC43B1FD0FE9F009E534B /* NGJSONParametersKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FC43A1FD0FE9F009E534B /* NGJSONParametersKeys.m */; };
 		095C8C841FB3F3E80085B01E /* NGBackendClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 095C8C811FB3F3E80085B01E /* NGBackendClient.m */; };
@@ -71,6 +71,7 @@
 		09E8C3A81FCD6EC900FA7040 /* NSString+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E8C38C1FCD6EC900FA7040 /* NSString+MagicalDataImport.m */; };
 		09E8C3A91FCD6EC900FA7040 /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E8C38F1FCD6EC900FA7040 /* NSPersistentStoreCoordinator+MagicalRecord.m */; };
 		09E8E1451FD4F40900119CE2 /* UseAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E8E1441FD4F40900119CE2 /* UseAccountViewController.m */; };
+		09E8E14A1FD5473300119CE2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E8E1491FD5473300119CE2 /* BaseViewController.m */; };
 		09FA36D41FC7FAED0005335A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09FA36D61FC7FAED0005335A /* Localizable.strings */; };
 		09FA36E61FC810240005335A /* UIImage+NGMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FA36E31FC810240005335A /* UIImage+NGMethods.m */; };
 		09FA36E71FC810240005335A /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FA36E51FC810240005335A /* UIView+Frame.m */; };
@@ -89,9 +90,9 @@
 		091FC4271FD0FBD1009E534B /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		091FC4281FD0FBD1009E534B /* QRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRViewController.h; sourceTree = "<group>"; };
 		091FC4291FD0FBD1009E534B /* SubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
-		091FC42A1FD0FBD1009E534B /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		091FC42A1FD0FBD1009E534B /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		091FC42B1FD0FBD1009E534B /* QRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRViewController.m; sourceTree = "<group>"; };
-		091FC42C1FD0FBD1009E534B /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		091FC42C1FD0FBD1009E534B /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		091FC42D1FD0FBD1009E534B /* SubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
 		091FC4391FD0FE9F009E534B /* NGJSONParametersKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGJSONParametersKeys.h; sourceTree = "<group>"; };
 		091FC43A1FD0FE9F009E534B /* NGJSONParametersKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGJSONParametersKeys.m; sourceTree = "<group>"; };
@@ -208,6 +209,8 @@
 		09E8C38F1FCD6EC900FA7040 /* NSPersistentStoreCoordinator+MagicalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPersistentStoreCoordinator+MagicalRecord.m"; sourceTree = "<group>"; };
 		09E8E1431FD4F40900119CE2 /* UseAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseAccountViewController.h; sourceTree = "<group>"; };
 		09E8E1441FD4F40900119CE2 /* UseAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseAccountViewController.m; sourceTree = "<group>"; };
+		09E8E1481FD5473300119CE2 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		09E8E1491FD5473300119CE2 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		09FA36D11FC7FA780005335A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		09FA36D51FC7FAED0005335A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		09FA36D71FC7FAF10005335A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -262,12 +265,14 @@
 			isa = PBXGroup;
 			children = (
 				091FC4271FD0FBD1009E534B /* AppViewController.swift */,
-				091FC4281FD0FBD1009E534B /* QRViewController.h */,
-				091FC42B1FD0FBD1009E534B /* QRViewController.m */,
-				091FC42C1FD0FBD1009E534B /* ViewController.h */,
-				091FC42A1FD0FBD1009E534B /* ViewController.m */,
+				09E8E1481FD5473300119CE2 /* BaseViewController.h */,
+				09E8E1491FD5473300119CE2 /* BaseViewController.m */,
+				091FC42C1FD0FBD1009E534B /* MainViewController.h */,
+				091FC42A1FD0FBD1009E534B /* MainViewController.m */,
 				091FC42D1FD0FBD1009E534B /* SubViewController.h */,
 				091FC4291FD0FBD1009E534B /* SubViewController.m */,
+				091FC4281FD0FBD1009E534B /* QRViewController.h */,
+				091FC42B1FD0FBD1009E534B /* QRViewController.m */,
 				09E8E1431FD4F40900119CE2 /* UseAccountViewController.h */,
 				09E8E1441FD4F40900119CE2 /* UseAccountViewController.m */,
 			);
@@ -693,6 +698,7 @@
 				09E8C3921FCD6EC900FA7040 /* MagicalRecord.m in Sources */,
 				09E8C3931FCD6EC900FA7040 /* MagicalRecord+Actions.m in Sources */,
 				09E8E1451FD4F40900119CE2 /* UseAccountViewController.m in Sources */,
+				09E8E14A1FD5473300119CE2 /* BaseViewController.m in Sources */,
 				09FA36E61FC810240005335A /* UIImage+NGMethods.m in Sources */,
 				095C8D831FB4055A0085B01E /* NGRequestWrapper.m in Sources */,
 				095C8D821FB4055A0085B01E /* NGCascadeRequestOperation.m in Sources */,
@@ -713,7 +719,7 @@
 				095C8DF21FB45B840085B01E /* MBProgressHUD.m in Sources */,
 				09E8C3A81FCD6EC900FA7040 /* NSString+MagicalDataImport.m in Sources */,
 				099770401FD0049800A128A4 /* CurrentModel.xcdatamodeld in Sources */,
-				091FC4301FD0FBD1009E534B /* ViewController.m in Sources */,
+				091FC4301FD0FBD1009E534B /* MainViewController.m in Sources */,
 				09E8C39F1FCD6EC900FA7040 /* NSManagedObjectContext+MagicalObserving.m in Sources */,
 				09A4115F1FC426C50092FD46 /* NGViewHighlightControl.m in Sources */,
 				091FC4241FD0FBA2009E534B /* NGObjectFillHelper.m in Sources */,

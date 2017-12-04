@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SubViewController : UIViewController
+typedef enum : NSInteger {
+    NGUserAccount0,
+    NGUserAccount1,
+    NGUserAccount2
+} NGUserAccount;
+
+
+@interface SubViewController : BaseViewController
 
 @property (nonatomic, strong) NSModel* model;
-@property (nonatomic, assign) BOOL lastuser;
+
+@property (nonatomic, assign) NGUserAccount userIndex;
 
 @end

@@ -11,9 +11,9 @@ import Foundation
 class AppViewController: UIViewController {
 
 #if CONFIGTESTDEMO_BRANDING
-    let vc = ViewController.init()
+    let vc = MainViewController.init()
     func actions() -> Double {
-        let con = ViewController.init()
+        let con = MainViewController.init()
         let a = 10
         print("a = \(a)", con.superclass!)
 
@@ -28,7 +28,7 @@ class AppViewController: UIViewController {
 
 
 #if DEBUG
-    let con = ViewController.init()
+    let con = MainViewController.init()
 
 #endif
 

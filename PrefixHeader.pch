@@ -30,6 +30,7 @@
 
 #import "NGRequestEndpoints.h"
 #import "UIView+Frame.h"
+#import "MBProgressHUD.h"
 #import "MBProgressHUD+CZ.h"
 #import "UIImage+NGMethods.h"
 #import "NGCascadeRequestOperation.h"
@@ -39,6 +40,7 @@
 #import "RequestUrls.h"
 
 #import "KeychainItemWrapper.h"
+#import "BaseViewController.h"
 
 
 #import "NSUserAccount+CoreDataProperties.h"

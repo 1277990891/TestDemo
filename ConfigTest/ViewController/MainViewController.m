@@ -6,12 +6,12 @@
 //  Copyright © 2017 li bo. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainViewController.h"
 #import "ConfigTest-Swift.h"
 #import "NGViewHighlightControl.h"
 #import "SubViewController.h"
 
-@interface ViewController ()
+@interface MainViewController ()
 
 @property (nonatomic, strong)AFHTTPClient *httpClient;
 @property (nonatomic, strong)AFHTTPRequestOperation *downloadOperation;
@@ -19,18 +19,19 @@
 @property (nonatomic, strong) IBOutlet UIProgressView *progressView;
 
 @property (nonatomic, strong) NSModel* model;
-@property (weak, nonatomic) IBOutlet UITextField *usernameTF;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTF;
+@property (strong, nonatomic) IBOutlet UITextField *usernameTF;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTF;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @property (strong, nonatomic) IBOutlet UIButton *downloadButton;
 @property (strong, nonatomic) IBOutlet UIButton *pauseButton;
 @property (strong, nonatomic) IBOutlet NGViewHighlightControl *bottomCoverView;
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic, assign) NSInteger indexUser;
 
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,22 +77,35 @@
     }
     NSString* strw = NULL;
     if (strw == nil) {
-
     }
+
+    
 }
 
-#pragma --- 登陆
+#pragma --- 登陆 ---
 - (IBAction)loginAction:(UIButton*)sender
 {
     sender.selected = ! sender.selected;
 
-    self.usernameTF.text = @"123456@qq.com";
-    self.passwordTF.text = @"Test1111";
+    // user 1
+//    self.indexUser = 0;
+//    self.usernameTF.text = @"123456@qq.com";
+//    self.passwordTF.text = @"Test1111";
 
-//    self.usernameTF.text = @"gold41@mailinator.com";
-//    self.passwordTF.text = @"test1234";
+    // user 2
+    self.indexUser = 1;
+    self.usernameTF.text = @"gold41@mailinator.com";
+    self.passwordTF.text = @"test1234";
 
+    // user 3
+//    self.indexUser = 2;
+//    self.usernameTF.text = @"1277990891@qq.com";
+//    self.passwordTF.text = @"test1111";
+
+    [self showHUDWithText:nil];
     [self.model loginSuccessWithUUID:nil login:self.usernameTF.text password:self.passwordTF.text completionBlock:^(id resultObject, NSError *error) {
+        [self dismissHUD];
+
         if (error ==nil) {
             [MBProgressHUD showSuccess:@"登陆成功"];
         }else{
@@ -99,7 +113,6 @@
         }
     }];
 }
-
 
 
 #pragma ---- AFHTTPRequestOperation 下载
@@ -192,7 +205,21 @@
 
     SubViewController* subView = [[SubViewController alloc]init];
     subView.model = self.model;
-    subView.lastuser = [self.usernameTF.text isEqualToString:@"123456@qq.com"];
+
+    switch (self.indexUser) {
+        case 0:
+            subView.userIndex = NGUserAccount0;
+            break;
+        case 1:
+            subView.userIndex = NGUserAccount1;
+            break;
+        case 2:
+            subView.userIndex = NGUserAccount2;
+            break;
+        default:
+            subView.userIndex = NGUserAccount0;
+            break;
+    }
     [self.navigationController pushViewController:subView animated:YES];
 }
 @end

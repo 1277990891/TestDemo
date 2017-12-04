@@ -142,7 +142,7 @@ typedef enum : NSInteger {
     NSString* homeClub = nil;
 
 //  测试用户
-    if (_lastuser) {
+    if (self.userIndex == 0) {
         email = @"123456@qq.com";
         uuid = @"8ad6046e-78ec-4d34-a63f-547b8ccda62e";
         homeClub = @"219243ee-fc33-488a-9726-25c89fe79883";
@@ -150,14 +150,22 @@ typedef enum : NSInteger {
         gender = @"M";
         weight = @10;
         height = @30;
-    }else{
+    }else if (self.userIndex == 1) {
         uuid = @"d97f22e3-2598-4512-a3b5-707012ec7c71";
         homeClub = @"45ecf341-0045-4adb-bf7f-e285469afa14";
-        weight = @30;
+        weight = @50;
         height = @80;
+    }else if (self.userIndex == 2) {
+        uuid = @"fe4784d9-6308-402d-8e85-91e0b03210af";
+        homeClub = @"e8016db1-593d-4f6e-b4b6-b4e669786e9e";
+        weight = @100;
+        height = @130;
     }
 
+    [self showHUDWithText:nil];
     [self.model updateUserProfileWithUserUUID:uuid firstName:firstname lastName:@"Test" email:email measurementUnit:@"I" gender:gender homeClub:homeClub birthday:date weight:weight height:height newPassword:nil withCompletionBlock:^(id resultObject, NSError *error) {
+        [self dismissHUD];
+
         if (error == nil) {
             NSLog(@"NSHomeDirectory = %@", NSHomeDirectory());
             [MBProgressHUD showSuccess:@"保存成功"];
