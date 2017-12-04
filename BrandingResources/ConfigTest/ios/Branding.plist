@@ -10,7 +10,7 @@
 	<key>NetworkSettings</key>
 	<dict>
 		<key>NGBackendAddressKey</key>
-		<string>https://goldsgym.netpulse.com</string>
+		<string>https://goldsgym.ag-1.qa.netpulse.com</string>
 	</dict>
 	<key>ColorPalette</key>
 	<dict>

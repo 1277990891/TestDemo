@@ -15,22 +15,32 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
+#import "CoreData+MagicalRecord.h"
+
 #import "DebugDefined.h"
 #import "CustomDefines.h"
+#import "NSUserAccount.h"
+#import "NGObjectFillHelper.h"
+#import "NSModel.h"
 
 #import "AFNetworking.h"
 #import "AFHTTPClient.h"
 #import "NGHTTPClient.h"
+#import "NGRequestWrapper.h"
 
 #import "NGRequestEndpoints.h"
 #import "UIView+Frame.h"
+#import "MBProgressHUD+CZ.h"
 #import "UIImage+NGMethods.h"
-
+#import "NGCascadeRequestOperation.h"
 
 // jjkk item
 #import "RequestTagList.h"
 #import "RequestUrls.h"
 
 #import "KeychainItemWrapper.h"
+
+
+#import "NSUserAccount+CoreDataProperties.h"
 
 #endif 

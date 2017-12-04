@@ -93,7 +93,6 @@ static NGRequestWrapper* sRequestWrapper = nil;
 #warning IGNORES HTTPS CERTIFICATES
         [NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
 #endif
-
     }
     return self;
 }
@@ -202,6 +201,7 @@ static NGRequestWrapper* sRequestWrapper = nil;
         {
             sessionToken = strongSelf.sessionToken;
         }
+
         successBlock(responseObject, sessionToken, nil);
     } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
         failureBlock(error);
@@ -209,6 +209,107 @@ static NGRequestWrapper* sRequestWrapper = nil;
 
     [self.httpClient enqueueHTTPRequestOperation:operation];
     return operation;
+}
+
+#pragma Profile
+- (NSOperation*)updateUserProfileWithUserUUID:(NSString*)userUUID
+                                    firstName:(NSString*)firstName
+                                     lastName:(NSString*)lastName
+                                        email:(NSString*)email
+                              measurementUnit:(NSString*)measurementUnit
+                                       gender:(NSString*)gender
+                                     birthday:(NSDate*)birthdayDate
+                                       weight:(NSNumber*)weight
+                                       height:(NSNumber*)height
+                                      aboutMe:(NSString*)aboutMe
+                                     homeClub:(NSString*)homeClubUUID
+                                 profilePhoto:(NSString*)profilePhoto
+                                      street1:(NSString*)street1
+                                      street2:(NSString*)street2
+                                         city:(NSString*)city
+                                      country:(NSString*)country
+                              stateOrProvince:(NSString*)stateOrProvince
+                                   postalCode:(NSString*)postalCode
+                                  phoneNumber:(NSString*)phoneNumber
+                                clientLoginId:(NSString*)clientLoginId
+                              picturePassword:(NSNumber*)picturePassword
+                                      privacy:(NSString*)privacy
+                                     timezone:(NSString*)timeZone
+                                     passcode:(NSString*)passcode
+                                  oldPassword:(NSString*)oldPassword
+                                  newPassword:(NSString*)newPassword
+                              confirmPassword:(NSString*)confirmPassword
+                                 successBlock:(NGSignInRequestSuccessCompletionBlock)successBlock
+                                      failure:(NGRequestFailureCompletionBlock)failureBlock
+{
+    NSString* path = [NSString stringWithFormat:@"%@%@", NGMethodUpdateProfile,userUUID];
+
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    dateFormatter.dateFormat = @"MM/dd/yyyy";
+    NSMutableDictionary* params = [NSMutableDictionary dictionary];
+    SAFE_SET_OBJECT(params, @"firstname", firstName);
+    SAFE_SET_OBJECT(params, @"lastname", lastName);
+    SAFE_SET_OBJECT(params, @"email", email);
+    SAFE_SET_OBJECT(params, @"measurementUnit", measurementUnit);
+    SAFE_SET_OBJECT(params, @"gender", gender);
+    SAFE_SET_OBJECT(params, @"birthday", [dateFormatter stringFromDate:birthdayDate]);
+    NSString* weightString = [NSString stringWithFormat:@"%.1f", weight.floatValue];
+    SAFE_SET_OBJECT(params, @"weight", weightString);
+    NSString* heightString =[NSString stringWithFormat:@"%.2f", height.floatValue];
+    SAFE_SET_OBJECT(params, @"height", heightString);
+
+    SAFE_SET_OBJECT(params, @"aboutMe", aboutMe);
+    SAFE_SET_OBJECT(params, @"profilePhoto", profilePhoto);
+    SAFE_SET_OBJECT(params, @"street1", street1);
+    SAFE_SET_OBJECT(params, @"street2", street2);
+    SAFE_SET_OBJECT(params, @"city", city);
+    SAFE_SET_OBJECT(params, @"country", country);
+    SAFE_SET_OBJECT(params, @"stateOrProvince", stateOrProvince);
+    SAFE_SET_OBJECT(params, @"postalCode", postalCode);
+    SAFE_SET_OBJECT(params, @"phoneNumber", phoneNumber);
+    SAFE_SET_OBJECT(params, @"clientLoginId", clientLoginId);
+    SAFE_SET_OBJECT(params, @"picturePassword", picturePassword);
+    SAFE_SET_OBJECT(params, @"privacy", privacy);
+    SAFE_SET_OBJECT(params, @"timezone", timeZone);
+    SAFE_SET_OBJECT(params, @"homeClub", homeClubUUID);
+    SAFE_SET_OBJECT(params, @"newPasscode", passcode);
+    SAFE_SET_OBJECT(params, @"confirmPasscode", passcode);
+    SAFE_SET_OBJECT(params, @"oldPassword", oldPassword);
+    SAFE_SET_OBJECT(params, @"newPassword", newPassword);
+    SAFE_SET_OBJECT(params, @"confirmPassword", confirmPassword);
+    
+    if (nil != passcode)
+    {
+        params[@"firstTimeUser"] = @YES;
+    }
+    
+    NSMutableURLRequest* request = [self.httpClient requestWithMethod:@"PUT" path:path parameters:params];
+    if (nil != passcode)
+    {
+        [request setHTTPShouldHandleCookies:NO];
+    }
+    
+    AFHTTPRequestOperation* requestOperation = [self.httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation* operation, id responseObject) {
+        self.httpClient.password = newPassword;
+        successBlock(responseObject, [[operation.response allHeaderFields] objectForKey:@"Set-Cookie"], nil);
+    } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
+        failureBlock(error);
+    }];
+    
+    [self.httpClient enqueueHTTPRequestOperation:requestOperation];
+    
+    return requestOperation;
+}
+
+- (NSOperation*)loadUserProfileWithUserUUID:(NSString*)userUUID successBlock:(NGRequestSuccessCompletionBlock)successBlock failure:(NGRequestFailureCompletionBlock)failureBlock
+{
+    NSString* path = [NSString stringWithFormat:NGMethodGetProfile, userUUID];
+    return [self.httpClient getRequestWithPath:path parameters:nil success:^(AFHTTPRequestOperation* operation, id responseObject) {
+        successBlock(responseObject);
+    } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
+        failureBlock(error);
+    }];
 }
 
 @end

@@ -10,4 +10,7 @@
 
 @interface SubViewController : UIViewController
 
+@property (nonatomic, strong) NSModel* model;
+@property (nonatomic, assign) BOOL lastuser;
+
 @end

@@ -7,8 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "NGRequestWrapper.h"
-#import "MBProgressHUD+CZ.h"
 #import "ConfigTest-Swift.h"
 #import "NGViewHighlightControl.h"
 #import "SubViewController.h"
@@ -20,6 +18,7 @@
 @property (nonatomic, strong)NSOperationQueue *queue;
 @property (nonatomic, strong) IBOutlet UIProgressView *progressView;
 
+@property (nonatomic, strong) NSModel* model;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
@@ -41,7 +40,7 @@
 #else
     self.title = @"ConfigTest";
 #endif
-
+    self.model = [[NSModel alloc]init];
     // 转义
     NSString* urlStr = @"https://baidu.com/liaojie[]{}<>!@#$%";
     NSString *charactersToEscape = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\| ";
@@ -70,6 +69,15 @@
 
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageViewAction)];
     [self.bottomCoverView addGestureRecognizer:tap];
+
+    NSString* str = @"";
+    if (str == nil) {
+        NSLog(@"---");
+    }
+    NSString* strw = NULL;
+    if (strw == nil) {
+
+    }
 }
 
 #pragma --- 登陆
@@ -77,19 +85,20 @@
 {
     sender.selected = ! sender.selected;
 
-    self.usernameTF.text = @"gold41@mailinator.com";
-    self.passwordTF.text = @"test1234";
+    self.usernameTF.text = @"123456@qq.com";
+    self.passwordTF.text = @"Test1111";
 
-    [[NGRequestWrapper sharedInstance] signInWithUsername:self.usernameTF.text password:self.passwordTF.text success:^(id responseObject, NSString *cookie, NSDictionary *statusDescription) {
-        NSLog(@"success-%@ \n %@",cookie, responseObject);
-        [MBProgressHUD showSuccess:@"登陆成功"];
-    } failure:^(NSError *error) {
-        NSLog(@"fail-%@", error);
-        [MBProgressHUD showError:[NSString stringWithFormat:@"%@", [error.userInfo objectForKey:@"NSLocalizedDescription"]]];
+//    self.usernameTF.text = @"gold41@mailinator.com";
+//    self.passwordTF.text = @"test1234";
+
+    [self.model loginSuccessWithUUID:nil login:self.usernameTF.text password:self.passwordTF.text completionBlock:^(id resultObject, NSError *error) {
+        if (error ==nil) {
+            [MBProgressHUD showSuccess:@"登陆成功"];
+        }else{
+            [MBProgressHUD showError:@"登陆失败"];
+        }
     }];
 }
-
-
 
 
 
@@ -99,7 +108,6 @@
 {
     NSURL *url = [NSURL URLWithString:@"http://baishi.baidu.com/watch/5010048124986969826.html"];
     _httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-
 //    _queue = [[NSOperationQueue alloc] init];
 
 //    NSURLConnection
@@ -183,6 +191,8 @@
     self.imageView.highlightedImage = [UIImage imageNamed:@"xID_logo"];
 
     SubViewController* subView = [[SubViewController alloc]init];
+    subView.model = self.model;
+    subView.lastuser = [self.usernameTF.text isEqualToString:@"123456@qq.com"];
     [self.navigationController pushViewController:subView animated:YES];
 }
 @end

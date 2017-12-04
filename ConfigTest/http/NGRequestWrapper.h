@@ -24,6 +24,7 @@ typedef void (^ NGRequestFailureCompletionBlock)(NSError* error);
 @property (nonatomic, readonly) NSString* accountLinkingRedirectPrefix;
 @property (nonatomic, readonly) NGBackendClient* httpClient;
 
+
 + (NGRequestWrapper*)sharedInstance;
 
 
@@ -39,5 +40,38 @@ typedef void (^ NGRequestFailureCompletionBlock)(NSError* error);
 - (NSOperation*)signInWithUsername:(NSString*)username password:(NSString*)password newHomeClubUUID:(NSString*)newHomeClubUUID memberID:(NSString*)memberID success:(NGSignInRequestSuccessCompletionBlock)successBlock failure:(NGRequestFailureCompletionBlock)failureBlock;
 
 - (NSOperation*)signInWithUsername:(NSString*)username password:(NSString*)password newHomeClubUUID:(NSString*)newHomeClubUUID memberID:(NSString*)memberID checkForMessages:(BOOL)checkForMessages success:(NGSignInRequestSuccessCompletionBlock)successBlock failure:(NGRequestFailureCompletionBlock)failureBlock;
+
+// save profile
+- (NSOperation*)updateUserProfileWithUserUUID:(NSString*)userUUID
+                                    firstName:(NSString*)firstName
+                                     lastName:(NSString*)lastName
+                                        email:(NSString*)email
+                              measurementUnit:(NSString*)measurementUnit
+                                       gender:(NSString*)gender
+                                     birthday:(NSDate*)birthdayDate
+                                       weight:(NSNumber*)weight
+                                       height:(NSNumber*)height
+                                      aboutMe:(NSString*)aboutMe
+                                     homeClub:(NSString*)homeClubUUID
+                                 profilePhoto:(NSString*)profilePhoto
+                                      street1:(NSString*)street1
+                                      street2:(NSString*)street2
+                                         city:(NSString*)city
+                                      country:(NSString*)country
+                              stateOrProvince:(NSString*)stateOrProvince
+                                   postalCode:(NSString*)postalCode
+                                  phoneNumber:(NSString*)phoneNumber
+                                clientLoginId:(NSString*)clientLoginId
+                              picturePassword:(NSNumber*)picturePassword
+                                      privacy:(NSString*)privacy
+                                     timezone:(NSString*)timeZone
+                                     passcode:(NSString*)passcode
+                                  oldPassword:(NSString*)oldPassword
+                                  newPassword:(NSString*)newPassword
+                              confirmPassword:(NSString*)confirmPassword
+                                 successBlock:(NGSignInRequestSuccessCompletionBlock)successBlock
+                                      failure:(NGRequestFailureCompletionBlock)failureBlock;
+
+- (NSOperation*)loadUserProfileWithUserUUID:(NSString*)userUUID successBlock:(NGRequestSuccessCompletionBlock)successBlock failure:(NGRequestFailureCompletionBlock)failureBlock;
 
 @end

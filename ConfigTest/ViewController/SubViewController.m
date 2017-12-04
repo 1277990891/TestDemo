@@ -9,6 +9,8 @@
 #import "SubViewController.h"
 #import "QRViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "NSUserAccount+CoreDataProperties.h"
+#import "UseAccountViewController.h"
 
 typedef enum : NSInteger {
     NGWorkoutsTime30Seconds,
@@ -23,6 +25,9 @@ typedef enum : NSInteger {
 @property (nonatomic, assign)NSInteger indexPath;
 @property (nonatomic,strong)QRViewController* qrVc;
 @property (nonatomic, strong)UIWebView* web;
+@property (nonatomic, strong)NSUserAccount* userAccount;
+@property (nonatomic, strong) NSFetchedResultsController* fetchedResultsController;
+
 // 系统控件
 @property (strong,nonatomic)AVCaptureDevice * device;
 @property (strong,nonatomic)AVCaptureDeviceInput * input;
@@ -38,7 +43,6 @@ typedef enum : NSInteger {
     [super viewDidLoad];
     self.title = @"国际化文本";
     self.view.backgroundColor = [UIColor whiteColor];
-
 //    UIBarButtonItem* item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"ic_back"] style:UIBarButtonItemStylePlain target:self action:@selector(leftbarAction)];
 
     UIButton* back = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 20)];
@@ -49,7 +53,6 @@ typedef enum : NSInteger {
     back.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
     back.titleEdgeInsets = UIEdgeInsetsMake(0, -15, 0, -15);
 //    [back addTarget:self action:@selector(leftbarAction) forControlEvents:UIControlEventTouchUpInside];
-
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:back];
 
     SEL action = @selector(leftbarAction);
@@ -61,6 +64,20 @@ typedef enum : NSInteger {
     [self addViews];
 
 //    [self setupAVFundationView];
+
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    NSEntityDescription* workout = [NSEntityDescription entityForName:@"NSUserAccount" inManagedObjectContext:self.model.managedObjectContext];
+//    [request setEntity:workout];
+
+    request.entity = [NSEntityDescription entityForName:@"NSUserAccount" inManagedObjectContext:self.model.managedObjectContext];
+    NSError *error = nil;
+    NSArray* objs = [self.model.managedObjectContext executeFetchRequest:request error:&error];
+    if (error == nil){
+        for (int i=0; i<objs.count; i++) {
+            self.userAccount = objs[i];
+            NSLog(@"=======%@", self.userAccount.email);
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -93,6 +110,12 @@ typedef enum : NSInteger {
     [btn setTitle:@"扫码" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
+
+    UIButton *savebtn = [[UIButton alloc]initWithFrame:CGRectMake(100, 300, 100, 100)];
+    savebtn.backgroundColor = [UIColor redColor];
+    [savebtn setTitle:@"保存" forState:UIControlStateNormal];
+    [savebtn addTarget:self action:@selector(savebtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:savebtn];
 }
 - (void)btnAction
 {
@@ -100,6 +123,57 @@ typedef enum : NSInteger {
     self.qrVc.delegate = self;
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.qrVc];
     [self presentViewController:nav animated:YES completion:nil];
+}
+
+
+// 保存个人信息
+- (void)savebtnAction
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    NSDate *date = [dateFormatter dateFromString:@"01/13/2000"];
+
+    NSString* firstname = nil;
+    NSString* email  = nil;
+    NSString* uuid  = nil;
+    NSString* gender  = nil;
+    NSNumber* weight  = nil;
+    NSNumber* height  = nil;
+    NSString* homeClub = nil;
+
+//  测试用户
+    if (_lastuser) {
+        email = @"123456@qq.com";
+        uuid = @"8ad6046e-78ec-4d34-a63f-547b8ccda62e";
+        homeClub = @"219243ee-fc33-488a-9726-25c89fe79883";
+        firstname = @"tester";
+        gender = @"M";
+        weight = @10;
+        height = @30;
+    }else{
+        uuid = @"d97f22e3-2598-4512-a3b5-707012ec7c71";
+        homeClub = @"45ecf341-0045-4adb-bf7f-e285469afa14";
+        weight = @30;
+        height = @80;
+    }
+
+    [self.model updateUserProfileWithUserUUID:uuid firstName:firstname lastName:@"Test" email:email measurementUnit:@"I" gender:gender homeClub:homeClub birthday:date weight:weight height:height newPassword:nil withCompletionBlock:^(id resultObject, NSError *error) {
+        if (error == nil) {
+            NSLog(@"NSHomeDirectory = %@", NSHomeDirectory());
+            [MBProgressHUD showSuccess:@"保存成功"];
+            [self pushtoUserAccountViewController];
+        }else{
+            NSDictionary* dict = [error.userInfo objectForKey:@"responseData"];
+            [MBProgressHUD showError:[dict objectForKey:@"message"]];
+        }
+    }];
+}
+
+-(void)pushtoUserAccountViewController
+{
+    UseAccountViewController* vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"UseAccountVC"];
+    vc.model = self.model;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma --- QRViewControllerDelegate
@@ -153,6 +227,7 @@ typedef enum : NSInteger {
     // Start
     [_session startRunning];
 }
+
 #pragma mark AVCaptureMetadataOutputObjectsDelegate
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {

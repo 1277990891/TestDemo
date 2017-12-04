@@ -29,7 +29,7 @@ NSString* const NGMethodGetClubs = @"/np/company/children";
 NSString* const NGPartnerAliasClubCom = @"clubCom";
 NSString* const NGMethodPartnerCompanyDetails = @"/np/company/%@/external-details/%@";
 NSString* const NGMethodGetProfile = @"/np/exerciser/%@/profile";
-NSString* const NGMethodUpdateProfile = @"/np/exerciser/%@";
+NSString* const NGMethodUpdateProfile = @"/np/exerciser/";
 
 
 
